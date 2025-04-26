@@ -1,7 +1,7 @@
 # Ansible
-Learning Ansible From Scratch
+- Learning Ansible From Scratch
 
-# Ansible are the configuration management tool to manage the servers configurations
+## Ansible are the configuration management tool to manage the servers configurations
 - Ansible Roles
 - Playbooks
 - Variables
