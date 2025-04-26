@@ -1,0 +1,10 @@
+---
+- name: Installtion of Ansible
+  hosts: all
+  become: true
+  tasks:
+    - name: Installtion of Nginx
+      yum:
+        name: nginx
+        state: present
+        update_cache: yes
