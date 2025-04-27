@@ -8,3 +8,67 @@
         name: nginx
         state: present
         update_cache: yes
+
+- name: Installtion of Nginx
+  hosts: all
+  become: true
+  vars:
+    name: "hari"
+    age: "23"
+  tasks:
+    - name: Install Nginx
+      yum:
+        name: nginx
+        state: present
+    - name: using loops installation
+      yum:
+        name: "{{ item }}"
+        state: present
+        update_cache: true
+      loop:
+        - nginx
+        - httpd
+        - apache
+        - curl
+    - name: using key value pairs
+      yum:
+        name: "{{ items.name }}"
+        state: present
+      loop:
+        - { name: "hari" , age : "23"}
+        - { year : "2024", section: 'b'}
+    - name: Using Conditions
+      yum:
+        name: nginx
+        state: present
+      when: ansible_facts['os_family'] == "Ubuntu"
+    - name: registering output
+      yum: 
+        name: nginx
+        state: present
+      register: result_output
+      ignore_errors: true
+    - name: install when rc != 0
+      yum:
+        name: Nginx
+        state: present
+      when: result_output.rc != 0
+    - name: Install Nginx Debug 
+      debug: 
+        name: Nginx
+        var: result_output
+    - name: Pinging Server
+      ping:
+        name: checking
+        cmd: ip
+# when nginx is not active 
+    - name: check nginx status
+      shell: systemctl is-active status
+      register: output
+      ignore_errors: yes
+# Check the output when nginx is not active restart it 
+    - name: check the restart nginx
+      shell: systemctl restart Nginx
+      when: output.stdout != "active"
+
+

@@ -23,3 +23,29 @@
 ## Ansible Inventory File
 
 ## Ansible Adhoc Commands
+
+## Ansible Roles
+- Roles
+  - Tasks/
+  - Vars/
+  - Handlers/
+  - Files/
+  - Templates/
+  - Meta/
+  - Readme.MD
+  - Defaults/
+
+## Variable Precedence:
+  - Extra Vars
+  - Task Vars
+  - Block Vars
+  - Vars Files
+  - Play Vars
+  - Host/Group Vars
+  - Inventory Vars
+  - Facts
+  - Role Defaults
+
+## Error Handling
+- Execution of Tasks
+  - 
