@@ -70,5 +70,15 @@
     - name: check the restart nginx
       shell: systemctl restart Nginx
       when: output.stdout != "active"
+# Nginx Shell Command
+    - name: check shell working or not
+      cmd: systemctl status nginx
+      register: output
+      notify: restart nginx service
+  handlers:
+    - name: restart nginx service
+      service:
+        name: nginx
+        state: restarted
 
 
